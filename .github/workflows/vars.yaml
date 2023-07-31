@@ -17,6 +17,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: see PayLoad from github events
-        run: echo "PAYLOAD:\n${PAYLOAD}\n"
+        run: echo "$NAME pushed this, their email is $EMAIL"
         env:
-          PAYLOAD: ${{ toJSON(github.event) }}
+          NAME: ${{ toJSON(github.event.pusher.name) }}
+          EMAIL: ${{ toJSON(github.event.pusher.email) }}
